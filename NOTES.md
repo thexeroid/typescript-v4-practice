@@ -50,3 +50,18 @@ Short, in my own words. One line per idea.
 - Optional prop: `chargeVoltage?: number` → type is `number | undefined`, so check before use.
 - Template trap: `${false && 'x'}` prints **"false"** → use a ternary `${ok ? 'x' : ''}`.
 - Elite habit: check first, then build. Do not build strings or values you might throw away.
+
+### let / const / readonly / as const
+- Two separate questions: **Q1** can the *variable* point elsewhere? (`let` yes, `const` no). **Q2** can the *contents* change? (normal yes, `readonly` / `as const` no).
+- `readonly` goes on a **type** (params, interfaces): "I won't change it", values stay general.
+- `as const` goes on a **value**: readonly + exact literal values, deeply.
+- `let x = [1, 2] as const` ≡ `let x: readonly [1, 2] = [1, 2]`. `as const` just saves typing.
+- Annotation present → TS uses it (the value only has to fit). No annotation → TS infers from the value.
+- `let x: readonly number[] = [1, 2] as const` → the `as const` is pointless; the annotation wins.
+
+### Excess properties & tuples (the 3 laws)
+- Law 1: shape is enough. Extra props are fine (structural typing).
+- Law 2: TS checks assignments and arguments, not what methods do.
+- Law 3: TS isn't 100% safe on purpose (practical bouncer).
+- Exception: a **fresh literal** (written right in the call/assignment) with extra props → error (typo catcher, since TS 1.6).
+- `[number, string]` tuple: `.push(2)` compiles (a known hole); `readonly` tuple has no `.push` at all.
