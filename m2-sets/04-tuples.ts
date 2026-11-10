@@ -6,9 +6,9 @@ type Car = [year: number, make: string, model: string];
 
 function isCar(arr: unknown[]): arr is Car {
   if (
-    arr.length < 3 ||
+    arr.length !== 3 ||
     typeof arr[0] !== "number" ||
-    (typeof arr[0] === "number" && Number.isNaN(arr[0])) ||
+    Number.isNaN(arr[0]) ||
     typeof arr[1] !== "string" ||
     typeof arr[2] !== "string"
   )

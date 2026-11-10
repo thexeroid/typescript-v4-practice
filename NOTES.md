@@ -80,3 +80,4 @@ Short, in my own words. One line per idea.
 - `str.split('-')` → **all strings**. TS converts nothing: `Number(x)` is my job.
 - ⚠️ A type guard (`x is Car`) is a **promise TS trusts blindly**. If it checks without converting, TS believes a lie. Guards **check**; parsers **check + convert**.
 - `Number('')` is `0`, not NaN. Empty parts slip through `isNaN` checks.
+- Validate the raw text **before** coercing (`/^\d{4}$/.test(y)`), then `Number(y)`. Coercion hides bad input (`"" → 0`).
