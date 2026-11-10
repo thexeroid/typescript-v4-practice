@@ -9,4 +9,4 @@
 //   6  import type { Car } from './car.ts';
 //   7  function f(x: number): void {}
 //   8  abstract class Shape { abstract area(): number }
-export const answer: string[] = [/* ✏️ YOUR ANSWER: 8 × 'gone' | 'kept' */];
+export const answer: string[] = ['gone', 'gone', 'kept', 'kept', 'gone', 'gone', 'kept', 'kept'];
