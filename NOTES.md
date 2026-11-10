@@ -68,3 +68,12 @@ Short, in my own words. One line per idea.
 - Tuple **length is part of the type**: `[1, 'a', 2]` doesn't fit `[number, string]` (fresh or not).
 - `let n;` with no value = **evolving type**: TS follows each assignment. Still safe (it knows the type at every line), but elite habit: annotate `let n: number;`.
 - TS doesn't do math on types: `2 + 2` is `number`, not `4`.
+
+### 🧭 How TS decides a type (the flowchart)
+1. Did **I write** a type (`: number`)? → that's the type. The value only has to fit. (`const z: number = 5` → `number`, NOT `5`)
+2. Else, `const` + primitive? → exact value (`5`, `'hi'`)
+3. Else (`let`, objects, arrays) → wide (`number`, `string | number`, `number[]`). `as const` on the value → exact + readonly.
+- `let y = cond ? 1 : 'one'` → `string | number` (let widens). `const` → `1 | 'one'`.
+- Always ask first: **annotation? let or const?**
+- Two views per line: 🛠️ what TS allows (dev time) vs ▶️ what JS does (runtime). Bugs live in the gap.
+- Rapid fire 1: 11/13 → misses retried ✅
