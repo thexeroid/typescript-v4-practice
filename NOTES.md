@@ -84,3 +84,8 @@ Short, in my own words. One line per idea.
 - `Number()` trims spaces; empty → **0**: `''`, `'   '`, `'\n'`, `'00'` → 0. Also `'0x10'` → 16, `'1e3'` → 1000, `'12px'` → NaN. After coercing, the info is gone.
 - 🔒 **Validation rule: allowlist, not denylist.** Define what's valid (year = 4 digits; make = non-empty), reject everything else. That's where to stop, not by chasing weird inputs.
 - Only coerce what must be a number; keep the rest as strings (`'00'` as a model is fine).
+- **Parse, don't validate:** one small parser per field (`parseYear`, `parseName`) that checks + converts together. One source of truth per rule.
+- IDs/machine data → strict, no trimming. Human-typed form input → trim, be forgiving. Pick one rule and write it down.
+- Regex: `^` = start, `$` = end. `[A-z]` is a bug (it includes `[ \ ] ^ _` and backtick) → use `[A-Za-z]`.
+- `const [a, b, c, ...rest] = s.split('-')` → `rest.length` catches extra parts.
+- Don't comment out dead code. Delete it; git remembers.
