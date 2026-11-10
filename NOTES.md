@@ -47,3 +47,5 @@ Short, in my own words. One line per idea.
 - `as const` is on the **value**, so it beats `let`: `let f = 'hi' as const` → `'hi'`
 - Ternary: `const` → `'yes' | 0`; `let` → `string | number`
 - Union of literals = enum without runtime code: `type Dir = 'up' | 'down'` (gone after compile)
+- Optional prop: `chargeVoltage?: number` → type is `number | undefined`, so check before use.
+- Template trap: `${false && 'x'}` prints **"false"** → use a ternary `${ok ? 'x' : ''}`.
