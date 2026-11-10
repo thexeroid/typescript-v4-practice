@@ -89,3 +89,14 @@ Short, in my own words. One line per idea.
 - Regex: `^` = start, `$` = end. `[A-z]` is a bug (it includes `[ \ ] ^ _` and backtick) → use `[A-Za-z]`.
 - `const [a, b, c, ...rest] = s.split('-')` → `rest.length` catches extra parts.
 - Don't comment out dead code. Delete it; git remembers.
+
+### M2 boss · phone book
+- Object type: `type Contact = { phone: string; email?: string }`
+- Dictionary with any keys: `Record<string, Contact>` (same as `{ [name: string]: Contact }`). A lookup gives `Contact | undefined`.
+- Guards are for **unknown** data at the boundary (JSON, input). Already-typed data only needs an `undefined` check. Check once at the door 🚪
+- "No result" → return `undefined`, not fake values (`'none'`, `-1`, `''`). It forces callers to handle it: `emailOf(b, n) ?? 'no email'`.
+- `as` = "trust me, TS" ❌. An annotation = "check me, TS" ✅. `{} as Record<…>` → `reduce((acc: T, …) => …, {})` or `reduce<T>(…)`.
+- TS forgets that a key came from `Object.keys` → the lookup is still `| undefined`. Use `Object.entries` to get `[key, value]` pairs.
+- `Object.entries` is slightly slower (an array per pair), but negligible. Clear code first; optimize after measuring.
+- Functional vs loop = style. Pick what reads clearest. A loop is fine when tracking several things at once.
+- Destructure tuples for readability: `([who]) => …`, `(sum, [, minutes]) => …`
