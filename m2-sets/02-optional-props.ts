@@ -10,7 +10,8 @@ export interface Car {
 }
 export function describe(car: Car): string {
   // ✏️ YOUR CODE HERE
-  const isEV = typeof car.chargeVoltage === "number";
-  const tagEV = ` (EV, ${car.chargeVoltage}V)`;
-  return `${car.year} ${car.make} ${car.model}${isEV ? tagEV : ""}`;
+  const base = `${car.year} ${car.make} ${car.model}`;
+  return car.chargeVoltage !== undefined
+    ? `${base} (EV, ${car.chargeVoltage}V)`
+    : base;
 }

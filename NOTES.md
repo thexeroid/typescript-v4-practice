@@ -49,3 +49,4 @@ Short, in my own words. One line per idea.
 - Union of literals = enum without runtime code: `type Dir = 'up' | 'down'` (gone after compile)
 - Optional prop: `chargeVoltage?: number` → type is `number | undefined`, so check before use.
 - Template trap: `${false && 'x'}` prints **"false"** → use a ternary `${ok ? 'x' : ''}`.
+- Elite habit: check first, then build. Do not build strings or values you might throw away.
