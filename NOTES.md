@@ -77,3 +77,6 @@ Short, in my own words. One line per idea.
 - Always ask first: **annotation? let or const?**
 - Two views per line: 🛠️ what TS allows (dev time) vs ▶️ what JS does (runtime). Bugs live in the gap.
 - Rapid fire 1: 11/13 → misses retried ✅
+- `str.split('-')` → **all strings**. TS converts nothing: `Number(x)` is my job.
+- ⚠️ A type guard (`x is Car`) is a **promise TS trusts blindly**. If it checks without converting, TS believes a lie. Guards **check**; parsers **check + convert**.
+- `Number('')` is `0`, not NaN. Empty parts slip through `isNaN` checks.
