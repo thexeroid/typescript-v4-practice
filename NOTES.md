@@ -35,3 +35,15 @@ Short, in my own words. One line per idea.
 - `arr.every(isItem)` narrows the whole array to `Item[]`.
 - Hand-written guards for every schema = lots of work → real projects use **Zod** (check + type from one schema).
 - JSON has real numbers: `2` → number, `"2"` → string.
+
+## M2 · Types as sets of values
+
+- A type = a **set** of allowed values. `number` = all numbers; `6` = just {6} (a *literal type*).
+- `const` locks the **variable**, not the contents:
+  - primitive: `const b = 6` → `6`; `let a = 6` → `number`
+  - object/array: `const c = { n: 6 }` → `{ n: number }` (because `c.n = 7` is allowed)
+- Arrays infer a union of what's inside: `[1, 'x']` → `(string | number)[]`
+- `as const` locks the contents too: `[1, 'x'] as const` → `readonly [1, 'x']` (literal + fixed length + readonly)
+- `as const` is on the **value**, so it beats `let`: `let f = 'hi' as const` → `'hi'`
+- Ternary: `const` → `'yes' | 0`; `let` → `string | number`
+- Union of literals = enum without runtime code: `type Dir = 'up' | 'down'` (gone after compile)
