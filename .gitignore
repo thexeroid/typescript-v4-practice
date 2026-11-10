@@ -1,0 +1,4 @@
+.solutions/
+node_modules/
+dist/
+*.tsbuildinfo

@@ -1,0 +1,25 @@
+{
+  "name": "typescript-fundamentals-workspace",
+  "private": true,
+  "type": "module",
+  "description": "Hands-on drills for TypeScript Fundamentals v4. Edit the .ts stubs, run the tests (they type-check AND run your code).",
+  "scripts": {
+    "test": "node --no-warnings --experimental-transform-types --test --test-reporter=spec",
+    "watch": "node --no-warnings --experimental-transform-types --test --watch --test-reporter=spec",
+    "m1": "npm test -- 'm1-*/*.test.js'",
+    "m2": "npm test -- 'm2-*/*.test.js'",
+    "m3": "npm test -- 'm3-*/*.test.js'",
+    "m4": "npm test -- 'm4-*/*.test.js'",
+    "m5": "npm test -- 'm5-*/*.test.js'",
+    "m6": "npm test -- 'm6-*/*.test.js'",
+    "m7": "npm test -- 'm7-*/*.test.js'",
+    "capstone": "npm test -- 'capstone/*.test.js'",
+    "verify-solutions": "SOLUTIONS=1 node --no-warnings --experimental-transform-types --test --test-reporter=dot"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2"
+  },
+  "engines": {
+    "node": ">=22.18"
+  }
+}
