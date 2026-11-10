@@ -22,3 +22,16 @@ Short, in my own words. One line per idea.
 - `let total;` then `total += x` → `NaN`. TS flags "might be undefined", not the NaN itself.
 - One-liner fallback: `list.find(f)?.toUpperCase() ?? ''`
 - `tsconfig.json` → `"strict": true` means strict is on.
+
+### M1 boss · typed CLI
+- `"types": ["node"]` → load Node built-ins (`process`, `fs`). TS 6+ no longer loads them automatically.
+- `nodenext` = check imports with Node's real rules (needs `.js` in relative imports). Bundler projects → `esnext` + `moduleResolution: bundler`.
+- Relative paths resolve from the **current terminal folder** (`process.cwd()`), not the script's folder.
+- ES modules have no `__dirname` → `import.meta.dirname`.
+- `process.argv` = [node, script, ...what you typed] → `const [file] = process.argv.slice(2)`.
+- `JSON.parse` returns `any` → write `const x: unknown = JSON.parse(...)` so TS **forces** a check.
+- Type guard: `function isItem(x: unknown): x is Item` → when it returns true, TS treats x as Item.
+- Use `"name" in x` (TS understands it), not `x.hasOwnProperty("name")` (TS ignores it).
+- `arr.every(isItem)` narrows the whole array to `Item[]`.
+- Hand-written guards for every schema = lots of work → real projects use **Zod** (check + type from one schema).
+- JSON has real numbers: `2` → number, `"2"` → string.
