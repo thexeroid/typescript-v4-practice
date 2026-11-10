@@ -8,4 +8,4 @@
 //   6  let t: [number, string] = [1, 'a', 2];
 //   7  let n;  n = 4;  n = 'x';
 //   8  const n = 4;  let m: 4 = n;  let k: 4 = 2 + 2;
-export const answer: boolean[] = [/* ✏️ YOUR ANSWER: true = compiles, false = type error */];
+export const answer: boolean[] = [false, true, false, true, false, false, true, false];

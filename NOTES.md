@@ -65,3 +65,6 @@ Short, in my own words. One line per idea.
 - Law 3: TS isn't 100% safe on purpose (practical bouncer).
 - Exception: a **fresh literal** (written right in the call/assignment) with extra props → error (typo catcher, since TS 1.6).
 - `[number, string]` tuple: `.push(2)` compiles (a known hole); `readonly` tuple has no `.push` at all.
+- Tuple **length is part of the type**: `[1, 'a', 2]` doesn't fit `[number, string]` (fresh or not).
+- `let n;` with no value = **evolving type**: TS follows each assignment. Still safe (it knows the type at every line), but elite habit: annotate `let n: number;`.
+- TS doesn't do math on types: `2 + 2` is `number`, not `4`.
