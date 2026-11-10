@@ -81,3 +81,6 @@ Short, in my own words. One line per idea.
 - ⚠️ A type guard (`x is Car`) is a **promise TS trusts blindly**. If it checks without converting, TS believes a lie. Guards **check**; parsers **check + convert**.
 - `Number('')` is `0`, not NaN. Empty parts slip through `isNaN` checks.
 - Validate the raw text **before** coercing (`/^\d{4}$/.test(y)`), then `Number(y)`. Coercion hides bad input (`"" → 0`).
+- `Number()` trims spaces; empty → **0**: `''`, `'   '`, `'\n'`, `'00'` → 0. Also `'0x10'` → 16, `'1e3'` → 1000, `'12px'` → NaN. After coercing, the info is gone.
+- 🔒 **Validation rule: allowlist, not denylist.** Define what's valid (year = 4 digits; make = non-empty), reject everything else. That's where to stop, not by chasing weird inputs.
+- Only coerce what must be a number; keep the rest as strings (`'00'` as a model is fine).
