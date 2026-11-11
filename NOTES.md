@@ -112,3 +112,21 @@ Short, in my own words. One line per idea.
 - `implements` is optional: it only makes TS check the class *early*, where it's written.
 - JS constructor = the keyword **`constructor`**. A method named after the class (C++/Java habit) is just a normal method → `new Square(2)` ignores the 2.
 - A field set in the constructor needs no default (`#side: number;` is enough). TS checks that it's always set.
+
+### Intersections (`&`)
+- `A | B` = either. `A & B` = **both at once** (all fields of A and B).
+- `type StoredUser = User & WithId & WithTimestamps` → `{ name, email, id, createdAt, updatedAt }`.
+- Build it: `{ ...user, id, createdAt: now, updatedAt: now }`, and keep `: StoredUser` on the function so TS checks it.
+- 🪤 `createdAt: now, updatedAt: now` → **same Date object** shared. Mutate one → both change. Copy: `new Date(now)`.
+- JSON has no Date → over the wire dates are ISO strings. Convert to `Date` **once at the door**, use `Date` inside.
+
+### type vs interface
+- `interface` = a **handwritten list** of fields, always `interface X { … }` (no `=`). **Open**: same name twice → **merges** (declaration merging). Used to add to types you don't own (`interface Window { myApp: string }`).
+- `type` = a **name for any type expression** (a formula). **Sealed**: same name twice → "Duplicate identifier".
+- Only `type`: unions, primitives, tuples, mapped types `{ [K in Keys]: … }` (a loop wearing object clothes; computes `{ a: …; b: … }`, all required).
+- Both: object shapes, building on shapes (`&` vs `extends`), `implements`. They mix freely: an interface can extend a type and vice versa.
+- `extends` / `implements` need **one known object shape** → a union breaks them.
+- Clash: `extends` **errors** right away. `&` silently makes the field **`never`** (nothing is string AND number).
+- `unknown` = could be anything (all values). `never` = can be nothing (empty set).
+- Rule: objects → either (stay consistent). Unions/tuples/mapped → `type`. Others must add fields → `interface`.
+- Drill 4: 5/7 → cold redo 6/7.
