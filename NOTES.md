@@ -100,3 +100,11 @@ Short, in my own words. One line per idea.
 - `Object.entries` is slightly slower (an array per pair), but negligible. Clear code first; optimize after measuring.
 - Functional vs loop = style. Pick what reads clearest. A loop is fine when tracking several things at once.
 - Destructure tuples for readability: `([who]) => …`, `(sum, [, minutes]) => …`
+
+## M3 · Unions and intersections
+
+- **Discriminated union:** several object shapes that share one literal field (`status`). Check that field → TS narrows to the right shape (`r.data` exists only in `'ok'`).
+- `switch (r.status)` + `default: return assertNever(r)` → if someone adds a new status later, it's a **compile error** until it's handled. Exhaustiveness for free.
+- `assertNever(x: never)`: in `default`, `r` is `never` only if every case is covered.
+- Never hard-code values the data already carries (`Error: ${r.message}`, not `'Error: boom'`). Tests with one example can't catch it.
+- `…` (one character) ≠ `...` (three dots). Copy exact strings from the spec.
