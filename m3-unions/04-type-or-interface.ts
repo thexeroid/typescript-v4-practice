@@ -7,4 +7,4 @@
 //   5  give a name to a primitive or a tuple, like string or [number, number]
 //   6  be implemented by a class
 //   7  use mapped or conditional types ({ [K in Keys]: … })
-export const answer: string[] = [/* ✏️ YOUR ANSWER */];
+export const answer: string[] = ['type', 'interface', 'both', 'both', 'type', 'both', 'type'];
