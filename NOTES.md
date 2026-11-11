@@ -108,3 +108,7 @@ Short, in my own words. One line per idea.
 - `assertNever(x: never)`: in `default`, `r` is `never` only if every case is covered.
 - Never hard-code values the data already carries (`Error: ${r.message}`, not `'Error: boom'`). Tests with one example can't catch it.
 - `…` (one character) ≠ `...` (three dots). Copy exact strings from the spec.
+- **Duck typing / structural typing:** TS checks the *shape*, not the name. `Square` never says `implements HasArea`, but it has `area(): number`, so it fits. A plain `{ area: () => 5 }` fits too.
+- `implements` is optional: it only makes TS check the class *early*, where it's written.
+- JS constructor = the keyword **`constructor`**. A method named after the class (C++/Java habit) is just a normal method → `new Square(2)` ignores the 2.
+- A field set in the constructor needs no default (`#side: number;` is enough). TS checks that it's always set.
