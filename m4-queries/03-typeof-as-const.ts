@@ -3,8 +3,8 @@
 // Make themes and config literal + readonly, then derive:
 //   Theme  = 'light' | 'dark' | 'contrast'     (from themes)
 //   Config = the type of config;  Env = 'prod' (from config)
-export const themes = ['light', 'dark', 'contrast']; // ✏️
-export const config = { env: 'prod', retries: 3 }; // ✏️
-export type Theme = unknown; // ✏️
-export type Config = unknown; // ✏️
-export type Env = unknown; // ✏️
+export const themes = ["light", "dark", "contrast"] as const; // ✏️
+export const config = { env: "prod", retries: 3 } as const; // ✏️
+export type Theme = (typeof themes)[number]; // ✏️
+export type Config = typeof config; // ✏️
+export type Env = typeof config.env; // ✏️
