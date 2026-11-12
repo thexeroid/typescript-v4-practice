@@ -4,12 +4,16 @@
 // invoiceTotal(inv) = sum of qty × unitPrice.
 export interface Invoice {
   id: string;
-  currency: 'EUR' | 'USD' | 'GBP';
+  currency: "EUR" | "USD" | "GBP";
   items: { sku: string; qty: number; unitPrice: number }[];
 }
-export type LineItem = unknown; // ✏️
-export type Currency = unknown; // ✏️
+
+export type LineItem = Invoice["items"][number]; // ✏️
+export type Currency = Invoice["currency"]; // ✏️
 export function invoiceTotal(inv: Invoice): number {
   // ✏️ YOUR CODE HERE
-  return 0;
+  return inv.items.reduce(
+    (acc, { qty, unitPrice }) => acc + qty * unitPrice,
+    0,
+  );
 }
